@@ -12,6 +12,7 @@ class Landlord extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'id',
         'accommodation_id',
         'last_name',
         'first_name',
@@ -21,4 +22,8 @@ class Landlord extends Model
         'phone',
     ];
 
+    public function getKeyType()
+    {
+        return 'string';
+    }
 }

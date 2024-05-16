@@ -9,8 +9,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('landlords', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('accommodation_id');
+            $table->uuid('id')->primary();
+            $table->string('accommodation_id');
             $table->string('last_name');
             $table->string('first_name');
             $table->string('login');

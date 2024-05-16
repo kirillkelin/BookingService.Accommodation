@@ -13,6 +13,7 @@ class Accommodation extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'id',
         'description',
         'price',
         'status',
@@ -20,9 +21,13 @@ class Accommodation extends Model
         'tenant_id',
     ];
 
-    public function characteristics(): HasOne
+    public function characteristic()
     {
-        return $this->hasOne(AccommodationCharacteristic::class);
+        return $this->BelongsTo(AccommodationCharacteristic::class, 'characteristics_id');
     }
 
+    public function getKeyType()
+    {
+        return 'string';
+    }
 }

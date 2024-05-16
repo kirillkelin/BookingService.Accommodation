@@ -6,14 +6,18 @@ use App\Models\Landlord;
 
 final class LandlordRepository
 {
-    public function getById(int $id): ?Landlord
+    public function getById(string $id): ?Landlord
     {
-        $result = Landlord::find($id);
+        try {
+            $result = Landlord::find($id);
+        } catch (\Exception $exception) {
+            return null;
+        }
 
-        return $result ? $result : null;
+        return $result;
     }
 
-    public function getByAccommodationId(int $id): ?Landlord
+    public function getByAccommodationId(string $id): ?Landlord
     {
         $result = Landlord::get()->where('accommodation_id', '=', $id)->last();
 

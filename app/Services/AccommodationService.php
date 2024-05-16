@@ -16,9 +16,9 @@ final class AccommodationService
         private readonly LandlordRepository $landlordRepository,
     ) {}
 
-    public function getAllNoBooked(): ?Collection
+    public function getAll(Request $request): ?Collection
     {
-        return $this->accommodationRepository->getAllNoBooked();
+        return $this->accommodationRepository->getAll($request);
     }
 
     public function getById(Request $request): ?Accommodation
@@ -28,7 +28,7 @@ final class AccommodationService
         return $this->accommodationRepository->getById($id);
     }
 
-    public function getByLandlordId(int $id): ?Accommodation
+    public function getByLandlordId(string $id): ?Accommodation
     {
         $landlord = $this->landlordRepository->getById($id);
         $accommodationId = $landlord->accommodation_id;
