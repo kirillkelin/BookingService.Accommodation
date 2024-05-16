@@ -38,7 +38,11 @@ final class AccommodationRepository
 
     public function getById(string $id): ?Accommodation
     {
-        $result = Accommodation::find($id);
+        try {
+            $result = Accommodation::find($id);
+        } catch (\Exception $exception) {
+            return null;
+        }
 
         return $result ? $result : null;
     }

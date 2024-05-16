@@ -14,7 +14,7 @@ final class LandlordRepository
             return null;
         }
 
-        return $result ? $result : null;
+        return $result;
     }
 
     public function getByAccommodationId(string $id): ?Landlord
