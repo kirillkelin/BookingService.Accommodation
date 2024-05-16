@@ -3,21 +3,40 @@
 namespace App\Repositories;
 
 use App\Models\Accommodation;
+use App\Models\AccommodationCharacteristic;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 final class AccommodationRepository
 {
-    public function getAllNoBooked(): Collection
+    public function getAll(Request $request): Collection
     {
-        return Accommodation::with('characteristic')->where('status', '=', false)->get();
+        $builder = Accommodation::query();
+
+        $builderSearch = $this->search($request, $builder);
+
+        return $builderSearch->get();
     }
 
-    public function getByLandlordId(int $landlordId): Accommodation
+    private function search(Request $request, Builder $builder): Builder
+    {
+        $status = $request->input('booked');
+
+        if (isset($status)) {
+            $builder->orWhere(DB::raw('status'), '=', $status);
+        }
+
+        return $builder->with('characteristic');
+    }
+
+    public function getByLandlordId(string $landlordId): Accommodation
     {
         return Accommodation::find($landlordId);
     }
 
-    public function getById(int $id): ?Accommodation
+    public function getById(string $id): ?Accommodation
     {
         $result = Accommodation::find($id);
 

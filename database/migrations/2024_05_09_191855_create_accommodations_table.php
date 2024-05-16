@@ -9,12 +9,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('accommodations', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->text('description');
             $table->integer('price');
             $table->boolean('status');
-            $table->foreignId('characteristics_id');
-            $table->integer('tenant_id');
+            $table->string('characteristics_id');
+            $table->string('tenant_id');
         });
     }
 

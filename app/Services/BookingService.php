@@ -26,7 +26,7 @@ class BookingService
         return $response->getBody();
     }
 
-    private function getAccommodationByLandlord(int $id): Accommodation
+    private function getAccommodationByLandlord(string $id): Accommodation
     {
         return $this->accommodationRepository->getByLandlordId($id);
     }

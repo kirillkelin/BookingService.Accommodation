@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Accommodation::factory(10)->create();
-        AccommodationCharacteristic::factory(3)->create();
+        AccommodationCharacteristic::factory(1)->create();
         Landlord::factory(10)->create();
     }
 

@@ -10,9 +10,9 @@ class AccommodationController extends BaseController
 {
     public function __construct(private readonly AccommodationService $accommodationService) {}
 
-    public function getAllNoBooked(): JsonResponse
+    public function getAll(Request $request): JsonResponse
     {
-        $result = $this->accommodationService->getAllNoBooked();
+        $result = $this->accommodationService->getAll($request);
 
         if (!$result) {
             return response()->json(['error' => 'Ошибка получения комнат']);
@@ -32,7 +32,7 @@ class AccommodationController extends BaseController
         return response()->json($result->toJson());
     }
 
-    public function getByLandlordId(int $id): JsonResponse
+    public function getByLandlordId(string $id): JsonResponse
     {
         $result = $this->accommodationService->getByLandlordId($id);
 

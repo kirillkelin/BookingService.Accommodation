@@ -13,6 +13,7 @@ class AccommodationCharacteristic extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'id',
         'count_rooms',
         'total_area',
         'address',
@@ -23,4 +24,8 @@ class AccommodationCharacteristic extends Model
         return $this->belongsTo(Accommodation::class);
     }
 
+    public function getKeyType()
+    {
+        return 'string';
+    }
 }

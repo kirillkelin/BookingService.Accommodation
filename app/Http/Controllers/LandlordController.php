@@ -32,7 +32,7 @@ class LandlordController extends BaseController
             return response()->json(['error' => 'Ошибка получения землевладельца.'])->setEncodingOptions(JSON_UNESCAPED_UNICODE);
         }
 
-        return response()->json($result->toJson());
+        return response()->json($result);
     }
 
 }
